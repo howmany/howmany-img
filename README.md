@@ -18,17 +18,8 @@ $ howmany-img -h
 $ howmany-img http://github.com/
 ```
 
-## Documentation
-_(Coming soon)_
-
-## Examples
-_(Coming soon)_
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-_(Nothing yet)_
+## Screenshot
+![](https://cloud.githubusercontent.com/assets/2560096/2911443/46b60554-d65c-11e3-8264-25c550b71948.png)
 
 ## License
-Copyright (c) 2014 Huei Tan. Licensed under the MIT license.
+Copyright (c) 2014 [Huei Tan](https://github.com/huei90). Licensed under the MIT license.

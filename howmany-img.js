@@ -17,6 +17,10 @@ var howmanyImg = function (url) {
     var index = 0;
     var errors = 0;
 
+    if (!/^http/.test(url)) {
+        url = 'http://' + url;
+    }
+
     request(url, function (error, response, html) {
         if (!error && response.statusCode === 200) {
             var $ = cheerio.load(html);
@@ -49,14 +53,14 @@ var howmanyImg = function (url) {
                 }
 
                 if (!isError) {
-                    console.log(chalk.green('✓ correctly'));
+                    console.log(chalk.green('✓ Correct'));
                 } else {
                     errors = errors + 1;
                 }
             });
 
             console.log('--------------------');
-            console.log('Total suggestions line ' + chalk.red(error) + '/' + index);
+            console.log('Total suggestions line ' + chalk.red(errors) + '/' + index);
             console.log('--------------------');
 
         } else {

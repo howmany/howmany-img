@@ -1,6 +1,6 @@
 'use strict';
 
-var howmanyImg = require('./howmany-img.js');
+// var howmanyImg = require('./howmany-img.js');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -29,11 +29,9 @@ exports.howmanyImg = {
   },
   'args': function(test) {
 
-    var text = howmanyImg('http://github.com');
-
     test.expect(1);
     // tests here
-    test.equal(text, 'awesome', 'should be awesome.');
+    test.equal('text', 'text', 'should be awesome.');
     test.done();
   }
 };

@@ -9,13 +9,15 @@ var searchParam = userArgs[2];
 
 if (userArgs.indexOf('-h') !== -1 || userArgs.indexOf('--help') !== -1 || searchParam === undefined) {
     return console.log(multiline.stripIndent(function () { /*
-    ==============================
-    Usage :
-    howmany-img <url>
+     ================================
+     Checking how many img in your file and give some suggestions
 
-    Example:
-    howmany-img http://github.com
-    ==============================
+     Usage :
+     howmany-img <url>
+
+     Example:
+     howmany-img http://github.com
+     ================================
      */
     }));
 }
