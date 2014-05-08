@@ -8,9 +8,11 @@
 
 'use strict';
 
-var chalk = require('chalk');
 var request = require('request');
 var cheerio = require('cheerio');
+var isHtml = require('is-html');
+var chalk = require('chalk');
+
 
 var howmanyImg = function (url) {
 
@@ -22,6 +24,12 @@ var howmanyImg = function (url) {
     }
 
     request(url, function (error, response, html) {
+
+        if (!isHtml(html)) {
+            console.log(chalk.red('This is not a html code'));
+            return;
+        }
+
         if (!error && response.statusCode === 200) {
             var $ = cheerio.load(html);
 
@@ -64,7 +72,7 @@ var howmanyImg = function (url) {
             console.log('--------------------');
 
         } else {
-            console.log(error);
+            console.log(chalk.red('somethings going wrong'));
         }
     });
 
