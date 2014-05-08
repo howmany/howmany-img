@@ -1,0 +1,25 @@
+{
+  "name": "howmany-img",
+  "version": "0.0.0",
+  "homepage": "https://github.com/howmany/howmany-img",
+  "authors": [
+    "Huei Tan"
+  ],
+  "description": "Checking how many img in your file",
+  "main": "howmany-img.js",
+  "keywords": [
+    "howmany-img",
+    "howmany",
+    "img",
+    "suggestions",
+    "Code Quality",
+    "Code Testing"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
