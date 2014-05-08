@@ -1,4 +1,4 @@
-# howmany-img [![Build Status](https://secure.travis-ci.org/huei90/howmany-img.png?branch=master)](http://travis-ci.org/huei90/howmany-img)
+# howmany-img [![Build Status](https://secure.travis-ci.org/howmany/howmany-img.png?branch=master)](http://travis-ci.org/howmany/howmany-img)
 
 Checking how many img in your file and give some suggestions
 
@@ -7,7 +7,7 @@ Install the module with: `npm install howmany-img`
 
 ```javascript
 var howmanyImg = require('howmany-img');
-howmanyImg();
+howmanyImg('http://github.com/'); // output
 ```
 
 Install with cli command
