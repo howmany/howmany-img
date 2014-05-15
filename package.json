@@ -1,11 +1,8 @@
 {
   "name": "howmany-img",
-  "version": "0.0.4-ready",
+  "version": "0.0.4-ready2",
   "description": "Checking how many img in your file and give some suggestions",
   "main": "howmany-img.js",
-  "bin": {
-    "howmany-img": "cli.js"
-  },
   "homepage": "https://github.com/howmany/howmany-img",
   "bugs": "https://github.com/howmany/howmany-img/issues",
   "repository": {
@@ -21,7 +18,6 @@
     "test": "grunt"
   },
   "license": "MIT",
-  "preferGlobal": "true",
   "keywords": [
     "howmany-img",
     "howmany",
