@@ -1,6 +1,6 @@
 {
   "name": "howmany-img",
-  "version": "0.0.0",
+  "version": "0.0.4-ready",
   "description": "Checking how many img in your file and give some suggestions",
   "main": "howmany-img.js",
   "bin": {
