@@ -3,19 +3,18 @@
 Checking how many img in your file and give some suggestions
 
 ## Getting Started
-Install the module with: `npm install howmany-img`
+Install the module with: `npm install --save howmany-img`
 
 ```javascript
 var howmanyImg = require('howmany-img');
-howmanyImg('http://github.com/'); // output
-```
+howmanyImg('test/test.html');
+// => output result
 
-Install with cli command
+howmanyImg('filenotfound');
+// => Error: ENOENT, open 'filenotfound'
 
-```bash
-$ npm install -g howmany-img
-$ howmany-img -h
-$ howmany-img http://github.com/
+howmanyImg('filenothtml');
+// => This is not a html code
 ```
 
 ## Screenshot
