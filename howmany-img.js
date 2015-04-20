@@ -11,69 +11,88 @@
 var fs = require('fs');
 var cheerio = require('cheerio');
 var isHtml = require('is-html');
-var chalk = require('chalk');
 
 
-var howmanyImg = function (file) {
+var howmanyImginFile = function (file, cb) {
 
-    var index = 0;
-    var errors = 0;
+    var errorList = [],
+        successList = [];
 
-    fs.readFile(file, 'utf8',function (err, data) {
-        if (err) {
-            throw err;
+    var input = fs.readFileSync(file, 'utf8');
+
+    if (!isHtml(input)) {
+        cb('This is not a html code', null);
+        return;
+    }
+
+    var $ = cheerio.load(input);
+
+    $('img').each(function () {
+        var attr = $(this)[0].attribs,
+            isError = false,
+            errorType = [];
+
+        if (!attr.alt) {
+            errorType.push('lack of alt');
+            isError = true;
         }
 
-        if (!isHtml(data)) {
-            console.log(chalk.red('This is not a html code'));
-            return;
+        if (attr.style) {
+            errorType.push('Remove inline style');
+            isError = true;
         }
 
-        var $ = cheerio.load(data);
+        if (attr.height) {
+            errorType.push('Remove height attribute');
+            isError = true;
+        }
 
-        $('img').each(function () {
-            var attr = $(this)[0].attribs,
-              isError = false;
+        if (attr.width) {
+            errorType.push('Remove width attribute');
+            isError = true;
+        }
 
-            console.log('--------------------');
-            console.log(chalk.blue(++index + ' : ') + $(this));
+        if (!isError) {
+            successList.push({
+                html: $(this)
+            });
+        } else {
+            errorList.push({
+                html: $(this),
+                error: errorType
+            });
+        }
+    });
 
-            if (!attr.alt) {
-                console.log(chalk.red('X') + ' ' + chalk.red('lack of alt'));
-                isError = true;
-            }
-
-            if (attr.style) {
-                console.log(chalk.red('X') + ' ' + chalk.red('Remove inline style'));
-                isError = true;
-            }
-
-            if (attr.height) {
-                console.log(chalk.red('X') + ' ' + chalk.red('Remove height attribute'));
-                isError = true;
-            }
-
-            if (attr.width) {
-                console.log(chalk.red('X') + ' ' + chalk.red('Remove width attribute'));
-                isError = true;
-            }
-
-            if (!isError) {
-                console.log(chalk.green('✓ Correct'));
-            } else {
-                errors = errors + 1;
-            }
-        });
-
-        console.log('--------------------');
-        console.log('Total suggestions line ' + chalk.red(errors) + '/' + index);
-        console.log('--------------------');
-
+    cb(null, {
+        success: successList,
+        error: errorList
     });
 
 };
 
-module.exports = function (file) {
-    console.log(chalk.underline.gray('loading howmany-img ...'));
-    howmanyImg(file);
+module.exports = function (file, opts, cb) {
+    if (typeof opts === 'function') {
+        cb = opts;
+        opts = {};
+    }
+
+    cb = cb || function () {};
+    opts = opts = {};
+
+
+    if (fs.existsSync(file)) {
+        howmanyImginFile(file, function (err, data) {
+            cb(err, data);
+        });
+    } else {
+        cb('no file found', null);
+    }
+
+    // howmanyImginUrl(url);
 };
+
+// check file
+// module.exports('test/test.html', function (err, data) {
+//    console.log(err,data)
+// });
